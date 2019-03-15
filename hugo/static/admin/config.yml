@@ -1,0 +1,21 @@
+backend:
+  name: github # git-gateway if using Netlify Identity integration
+  repo:  SammyB/hbh-hugo-cms
+  branch: master
+  base_url: # See https://github.com/vencax/netlify-cms-github-oauth-provider or remove if using Netlify Identity
+publish_mode: editorial_workflow
+media_folder: "hugo/static/assets"
+public_folder: "/assets"
+collections:
+  - name: "home" # Used in routes, e.g., /admin/collections/blog
+    label: "Home" # Used in the UI
+    folder: "_posts/home" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
+      - {label: "Body", name: "body", widget: "markdown"}
